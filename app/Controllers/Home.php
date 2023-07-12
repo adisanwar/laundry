@@ -18,4 +18,9 @@ class Home extends BaseController
     {
         echo view('pesanan');
     }
+
+    public function laporan()
+    {
+        echo view('laporan');
+    }
 }

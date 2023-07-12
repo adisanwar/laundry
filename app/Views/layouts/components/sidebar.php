@@ -12,7 +12,7 @@
     <li class="nav-item active">
         <a class="nav-link" href="<?= base_url('dashboard') ?>">
         <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Dashboard</span></a>
+        <span>Home</span></a>
     </li>
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
@@ -25,14 +25,14 @@
     <hr class="sidebar-divider my-0">
     <!-- Nav Item - Tables -->
     <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="<?= base_url('lacak') ?>">
         <i class="fas fa-fw fa-table"></i>
         <span>Lacak Pesanan</span></a>
     </li>
     <hr class="sidebar-divider my-0">
     <!-- Nav Item - Tables -->
     <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="<?= base_url('laporan') ?>">
         <i class="fas fa-fw fa-th-list"></i>
         <span>Laporan</span></a>
     </li>

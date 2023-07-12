@@ -32,6 +32,8 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Home::dashboard');
 $routes->get('/dashboard', 'Home::dashboard');
 $routes->get('/pesanan', 'Home::pesanan');
+$routes->get('/laporan', 'Home::laporan');
+$routes->get('/lacak', 'Pesanan::lacak');
 
 /*
  * --------------------------------------------------------------------
