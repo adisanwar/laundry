@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Users extends Migration
+class Laundry extends Migration
 {
     public function up()
     {
@@ -15,11 +15,11 @@ class Users extends Migration
 				'unsigned'       => true,
 				'auto_increment' => true
 			],
-			'name'       => [
-				'type'           => 'VARCHAR',
-				'constraint'     => '255'
+            'user_id'      => [
+				'type'           => 'INT',
+				'constraint'     => 11
 			],
-			'username'      => [
+			'name'       => [
 				'type'           => 'VARCHAR',
 				'constraint'     => '255'
 			],
@@ -27,21 +27,25 @@ class Users extends Migration
 				'type'           => 'INT',
 				'constraint'     => '25'
 			],
-			'email' => [
-				'type'           => 'VARCHAR',
-				'constraint'     => '255'
-			],
 			'alamat' => [
 				'type'           => 'VARCHAR',
 				'constraint'     => '255'
 			],
-			'password'      => [
-				'type'           => 'VARCHAR',
-				'constraint'     => '255'
+			'satuan'      => [
+				'type'           => 'enum',
+				'constraint'     => ['Pakaian Saja', 'Jaket', 'Selimut']
 			],
-            'level'      => [
-				'type'           => 'ENUM',
-				'constraint'     => ['Admin', 'Pelanggan'],
+            'hitung_pakaian'      => [
+				'type'           => 'enum',
+				'constraint'     => ['Kg', 'Pcs']
+			],
+            'bayar_via'      => [
+				'type'           => 'enum',
+				'constraint'     => ['Cash']
+			],
+            'qty' => [
+				'type'           => 'INT',
+				'constraint'     => '25'
 			],
             
 		]);
@@ -50,12 +54,11 @@ class Users extends Migration
 		$this->forge->addKey('id', TRUE);
 
 		// Membuat tabel users
-		$this->forge->createTable('users', TRUE);
+		$this->forge->createTable('laundry', TRUE);
     }
 
     public function down()
     {
-        // hapus table users
-        $this->forge->dropTable('users');
+        $this->forge->dropTable('laundry');
     }
 }

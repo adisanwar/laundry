@@ -36,6 +36,12 @@
         <i class="fas fa-fw fa-th-list"></i>
         <span>Laporan</span></a>
     </li>
+    <hr class="sidebar-divider my-0">
+    <li class="nav-item">
+        <a class="nav-link" href="<?= base_url('laporan') ?>">
+        <i class="fas fa-fw fa-th-list"></i>
+        <span>History</span></a>
+    </li>
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
     <!-- Sidebar Toggler (Sidebar) -->
