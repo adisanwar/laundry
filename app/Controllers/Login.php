@@ -2,20 +2,29 @@
 
 namespace App\Controllers;
 
-class Login extends BaseController
+use CodeIgniter\Controller;
+use CodeIgniter\Auth\Auth;
+
+class Login extends Controller
 {
+    protected $auth;
+
+    public function __construct()
+    {
+        $this->auth = new Auth();
+    }
+
     public function index()
     {
-        echo view('layouts/admin');
-    }
-
-    public function dashboard()
-    {
-        echo view('dashboard');
-    }
-
-    public function pesanan()
-    {
-        echo view('pesanan');
+        if ($this->auth->check()) {
+            $user = $this->auth->user();
+            $data['username'] = $user->username;
+            $data['email'] = $user->email;
+            $data['password'] = $user->password;
+        } else {
+            echo view();
+        }
+        echo view('dashboard', $data);
     }
 }
+

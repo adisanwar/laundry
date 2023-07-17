@@ -23,4 +23,9 @@ class Home extends BaseController
     {
         echo view('laporan');
     }
+    public function register()
+    {
+        echo view('register');
+    }
+    
 }

@@ -4,11 +4,11 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class CreateUsersAndBiodataTables extends Migration
+class Costumer extends Migration
 {
     public function up()
     {
-        // Create users table
+        // Create biodata table
         $this->forge->addField([
             'id'         => [
                 'type'           => 'INT',
@@ -16,12 +16,27 @@ class CreateUsersAndBiodataTables extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'username'   => [
+            'user_id'    => [
+                'type'       => 'INT',
+                'constraint' => 11,
+                'unsigned'   => true,
+            ],
+            'full_name'  => [
                 'type'       => 'VARCHAR',
                 'constraint' => 100,
                 'null'       => false,
             ],
-            'password'   => [
+            'alamat'  => [
+                'type'       => 'VARCHAR',
+                'constraint' => 100,
+                'null'       => false,
+            ],
+            'email'  => [
+                'type'       => 'VARCHAR',
+                'constraint' => 100,
+                'null'       => false,
+            ],
+            'no_hp'  => [
                 'type'       => 'VARCHAR',
                 'constraint' => 100,
                 'null'       => false,
@@ -36,13 +51,12 @@ class CreateUsersAndBiodataTables extends Migration
             ],
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->createTable('users');
-
-        
+        $this->forge->addForeignKey('user_id', 'users', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->createTable('customers');
     }
 
     public function down()
     {
-        $this->forge->dropTable('users');
+        $this->forge->dropTable('customers');
     }
 }

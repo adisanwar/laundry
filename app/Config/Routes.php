@@ -31,6 +31,8 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::dashboard');
 $routes->get('/dashboard', 'Home::dashboard');
+$routes->get('register', 'RegisterController::index');
+$routes->post('register', 'RegisterController::processRegistration');
 $routes->get('/pesanan', 'Home::pesanan');
 $routes->get('/laporan', 'Home::laporan');
 $routes->get('/lacak', 'Pesanan::lacak');
