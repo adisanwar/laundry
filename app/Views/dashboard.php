@@ -2,6 +2,7 @@
 <?= $this->section('content') ?>
 
 <div class="container-fluid">
+<div class="container-fluid">
   <div class="card shadow mb-4">
     <div class="card-header py-3">
       <h2 class="m-0 font-weight-bold text-primary">Cuci Kuy</h2>
@@ -15,6 +16,7 @@
 
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cuciModal"
       data-bs-whatever="@getbootstrap">Cuci Kuy!</button>
+  </div>
   </div>
 </div>
 </div>
