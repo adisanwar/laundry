@@ -3,58 +3,51 @@
 namespace App\Controllers;
 
 use App\Models\LaundryOrderModel;
+use App\Models\CustomerModel;
 use CodeIgniter\Controller;
 
-class LaundryOrderController extends Controller
+class Pesanan extends Controller
 {
+    protected $order;
+    protected $customer;
     public function __construct()
     {
         // Load the LaundryOrderModel
-        $this->laundryOrderModel = new LaundryOrderModel();
+        $this->order = new LaundryOrderModel();
+        $this->customer = new CustomerModel();
     }
 
     public function index()
     {
-        // Fetch all laundry orders from the database and pass them to the view
-        $data['orders'] = $this->laundryOrderModel->findAll();
-
-        // Load the view to display the orders
-        return view('laundry_order/index', $data);
-    }
-
-    public function create()
-    {
-        // Load the view to create a new laundry order
-        return view('laundry_order/create');
+        $data['customers'] = $this->customer->findAll();
+        // Melakukan operasi JOIN antara tabel "laundry_orders" dan "customers" dengan alias yang berbeda
+        $data['orders'] = $this->order->select('customers.id, customers.full_name, customers.alamat, customers.no_hp, orders.paket_laundry, orders.jenis, orders.berat, orders.harga, orders.pembayaran, orders.total, orders.status')
+                                       ->join('customers', 'customers.id = orders.customer_id')
+                                       ->findAll();
+    
+        // Menampilkan data hasil JOIN ke view atau lakukan sesuai kebutuhan
+        return view('pesanan', $data);
     }
 
     public function store()
     {
-        // Get the input data from the form
-        $jenis = $this->request->getPost('jenis');
-        $qty = $this->request->getPost('qty');
-        $harga = $this->request->getPost('harga');
-        $pembayaran = $this->request->getPost('pembayaran');
-        $total = $qty * $harga;
+        // Ambil data customer dari tabel "customers" untuk dropdown select
+        $customers['customers'] = $this->customer->findAll();
 
-        // Get the customer_id from the currently logged-in user
-        $customer_id = $this->getCurrentUserId();
+            $data = [
+                'customer_id' => $this->request->getPost('customer_id'),
+                'paket_laundry' => $this->request->getPost('paket_laundry'),
+                'jenis' => $this->request->getPost('jenis'),
+                'berat' => $this->request->getPost('berat'),
+                'harga' => $this->request->getPost('harga'),
+                'pembayaran' => $this->request->getPost('pembayaran'),
+                'total' => $this->request->getPost('total'),
+                'status' => $this->request->getPost('status'),
+            ];
 
-        // Create an array with the data to be inserted into the database
-        $data = [
-            'customer_id' => $customer_id,
-            'jenis' => $jenis,
-            'qty' => $qty,
-            'harga' => $harga,
-            'pembayaran' => $pembayaran,
-            'total' => $total,
-        ];
-
-        // Insert the data into the database
-        $this->laundryOrderModel->insert($data);
-
-        // Redirect to the index page with a success message
-        return redirect()->to('/laundry-order')->with('success', 'Laundry order created successfully.');
+            // Simpan data order ke dalam tabel "orders"
+            $this->order->insert($data);
+            return redirect('pesanan')->with('success', 'Order Added Successfully');
     }
 
     private function getCurrentUserId()

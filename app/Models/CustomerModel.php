@@ -9,7 +9,7 @@ class CustomerModel extends Model
     protected $table = 'customers';
     protected $primaryKey = 'id';
     protected $useAutoIncrement = true;
-    protected $allowedFields = ['full_name', 'alamat', 'email','no_hp', 'user_id'];
+    protected $allowedFields = ['full_name', 'alamat', 'email','no_hp'];
 
     // Define relationships
     protected $belongsTo = [

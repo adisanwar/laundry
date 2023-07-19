@@ -34,9 +34,17 @@ $routes->get('/dashboard', 'Home::dashboard');
 $routes->get('register', 'RegisterController::index');
 $routes->get('login', 'Auth::index');
 $routes->post('register', 'RegisterController::processRegistration');
-$routes->get('/pesanan', 'Home::pesanan');
+
+$routes->get('/customer', 'Customer::index');
+$routes->post('/customer/create', 'Customer::store');
+$routes->add('/customer/edit/(:any)', 'Customer::edit/$1');
+$routes->delete('customer/delete/(:any)', 'Customer::delete/$1');
+
+$routes->get('/pesanan', 'Pesanan::index');
 $routes->get('/laporan', 'Home::laporan');
 $routes->get('/lacak', 'Pesanan::lacak');
+
+$routes->get('/generate', 'Reporttransaksi::generate');
 
 /*
  * --------------------------------------------------------------------

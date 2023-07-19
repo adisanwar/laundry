@@ -1,43 +1,60 @@
-<!doctype html>
-<html lang="en">
+<link rel="stylesheet" href="<?= base_url('assets/css/sb-admin-2.min.css') ?>">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Login</title>
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <style type="text/css">
+        .divider:after,
+        .divider:before {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #eee;
+        }
+    </style>
 </head>
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 mx-auto mt-5">
-                <?php
-                if (session()->getFlashdata('message')) {
-                ?>
-                    <div class="alert alert-info">
-                        <?= session()->getFlashdata('message') ?>
+<section class="vh-100">
+    <div class="container py-5 h-100">
+        <div class="row d-flex align-items-center justify-content-center h-100">
+            <div class="col-md-8 col-lg-7 col-xl-6">
+                <img src="<?php echo base_url('assets\img\unlock.svg')?>" class="img-fluid" alt="Phone image">
+            </div>
+            <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+                <form action="<?= base_url('login');?>" method="post">
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <input type="email" id="form1Example13" class="form-control form-control-lg" />
+                        <label class="form-label" for="form1Example13">Email address</label>
                     </div>
-                <?php } ?>
-                <form method="post" action="<?= base_url('auth/auth') ?>">
-                    <h1 class="h3 mb-3 font-weight-normal">Aplikasi Login Sederhana
-                        Codeingiter 4</h1>
-                    <div class="form-group">
-                        <label>Username</label>
-                        <input type="text" class="form-control" name="username" required="" placeholder="Masukkan Username">
+
+                    <!-- Password input -->
+                    <div class="form-outline mb-4">
+                        <input type="password" id="form1Example23" class="form-control form-control-lg" />
+                        <label class="form-label" for="form1Example23">Password</label>
                     </div>
-                    <div class="form-group">
-                        <label>Password
-                        </label>
-                        <input type="password" class="form-control" name="password" required="" placeholder="Masukkan Password">
+
+                    <div class="d-flex justify-content-around align-items-center mb-4">
+                        <!-- Checkbox -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
+                            <label class="form-check-label" for="form1Example3"> Remember me </label>
+                        </div>
+                        <a href="#!">Forgot password?</a>
                     </div>
-                    <div class="form-group">
-                        <button class="btn btn-primary btn-block" type="submit">Login</button>
+
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
+
+                    <div class="divider d-flex align-items-center my-4">
+                        <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
                     </div>
+
+                    <a class="btn btn-primary btn-lg btn-block" style="background-color: #3b5998" href="#!" role="button">
+                        <i class="fab fa-facebook-f me-2"></i>Continue with Facebook
+                    </a>
+                    <a class="btn btn-primary btn-lg btn-block" style="background-color: #55acee" href="#!" role="button">
+                        <i class="fab fa-twitter me-2"></i>Continue with Twitter</a>
+
                 </form>
             </div>
         </div>
     </div>
-</body>
-</html>
+</section>

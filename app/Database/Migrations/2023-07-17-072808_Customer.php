@@ -16,11 +16,6 @@ class Costumer extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'user_id'    => [
-                'type'       => 'INT',
-                'constraint' => 11,
-                'unsigned'   => true,
-            ],
             'full_name'  => [
                 'type'       => 'VARCHAR',
                 'constraint' => 100,
@@ -34,7 +29,7 @@ class Costumer extends Migration
             'email'  => [
                 'type'       => 'VARCHAR',
                 'constraint' => 100,
-                'null'       => false,
+                'null'       => true,
             ],
             'no_hp'  => [
                 'type'       => 'VARCHAR',
@@ -51,7 +46,6 @@ class Costumer extends Migration
             ],
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('user_id', 'users', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('customers');
     }
 

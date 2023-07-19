@@ -15,15 +15,15 @@ class Order extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            // 'user_id'    => [
-            //     'type'       => 'INT',
-            //     'constraint' => 11,
-            //     'unsigned'   => true,
-            // ],
             'customer_id'    => [
                 'type'       => 'INT',
                 'constraint' => 11,
                 'unsigned'   => true,
+            ],
+            'paket_laundry'  => [
+                'type'       => 'VARCHAR',
+                'constraint' => 100,
+                'null'       => false,
             ],
             'jenis'  => [
                 'type'       => 'VARCHAR',
@@ -32,6 +32,11 @@ class Order extends Migration
             ],
             'qty'  => [
                 'type'       => 'VARCHAR',
+                'constraint' => 100,
+                'null'       => false,
+            ],
+            'berat'  => [
+                'type'       => 'INT',
                 'constraint' => 100,
                 'null'       => false,
             ],
@@ -50,6 +55,11 @@ class Order extends Migration
                 'constraint' => 100,
                 'null'       => false,
             ],
+            'status'  => [
+                'type'       => 'VARCHAR',
+                'constraint' => 100,
+                'null'       => false,
+            ],
             'created_at' => [
                 'type' => 'DATETIME',
                 'null' => true,
@@ -60,8 +70,6 @@ class Order extends Migration
             ],
         ]);
         $this->forge->addKey('id', true);
-        // $this->forge->addForeignKey('user_id', 'users', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->addForeignKey('customer_id', 'customers', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('orders');
     }
 
