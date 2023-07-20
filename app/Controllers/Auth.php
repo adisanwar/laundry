@@ -29,6 +29,7 @@ class Auth extends Controller
             session()->setFlashdata('message', 'Username atau Password Salah');
             return redirect()->to('login');
         }
+        session()->set('id', $user['id']);
         session()->set('username', $username);
         return redirect()->to('dashboard');
     }

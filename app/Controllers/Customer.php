@@ -27,6 +27,8 @@ class Customer extends BaseController
             'alamat' => $this->request->getPost('alamat'),
             'email' => $this->request->getPost('email'),
             'no_hp' => $this->request->getPost('no_hp'),
+            'created_at' => $this->request->getPost('created_at'),
+            'updated_at' => $this->request->getPost('updated_at'),
         ];
         // var_dump($data);
         $this->customers->insert($data);
@@ -39,7 +41,9 @@ class Customer extends BaseController
             'full_name' => $this->request->getPost('full_name'),
             'alamat' => $this->request->getPost('alamat'),
             'email' => $this->request->getPost('email'),
-            'no_hp' => $this->request->getPost('no_hp')
+            'no_hp' => $this->request->getPost('no_hp'),
+            'created_at' => $this->request->getPost('created_at'),
+            'updated_at' => $this->request->getPost('updated_at'),
         ];
     
         $this->customers->update($id, $data);
@@ -49,13 +53,7 @@ class Customer extends BaseController
 
     public function delete($id)
     {
-        // Cek apakah data dengan id tertentu ada di database
-        $customer = $this->customers->find($id);
-        if (!$customer) {
-            return redirect()->to(base_url('customer'))->with('error', 'Data not found.');
-        }
-        // Hapus data dari database
         $this->customers->delete($id);
-        return redirect()->to(base_url('customer'))->with('success', 'Data Deleted Successfully');
+        return redirect('customer')->with('success', 'Data Deleted Successfully');
     }
 }

@@ -49,14 +49,52 @@
                                 <td><?= $cs['email'] ?></td>
                                 <td><?= $cs['no_hp'] ?></td>
                                 <td>
-                                    <a href="" data-toggle="modal" data-target="#editCustomer-<?php echo $cs['id'] ?>" class="btn btn-sm btn-primary">Edit</a>
-                                    <a href="<?= base_url('customer/delete/' . $cs['id']) ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this customer?')">Delete</a>
+                                    <a href="" data-toggle="modal" data-target="#editCustomer<?= $cs['id'];?>" class="btn btn-sm btn-primary">Edit</a>
+                                    <a href="<?= base_url('customer/delete/'.$cs['id']) ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this customer?')">Delete</a>
                                 </td>
                         </tr>
-                    <?php endforeach; ?>
                     </tbody>
+                    <div class="modal fade" id="editCustomer<?= $cs['id'];?>" tabindex="-1" role="dialog" aria-labelledby="editCustomer" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editCustomer">Edit Data Customer</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="<?php echo base_url('customer/edit/' . $cs['id']) ?>" method="post">
+                                    <div class="form-group">
+                                        <label for="full_name" class="col-form-label">Nama</label>
+                                        <input type="text" class="form-control" id="full_name" name="full_name" value="<?= $cs['full_name'] ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="alamat" class="col-form-label">Alamat</label>
+                                        <textarea class="form-control" id="alamat" name="alamat" ><?= $cs['alamat'] ?></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email" class="col-form-label">Email</label>
+                                        <input type="text" class="form-control" id="email" name="email" value="<?= $cs['email'] ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="no_hp" class="col-form-label">No Hp</label>
+                                        <input type="tel" class="form-control" id="no_hp" name="no_hp" value="<?= $cs['no_hp'] ?>">
+                                    </div>
+                                    <!-- Tombol "Tambah" seharusnya berada di dalam form -->
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                    </div>
+                                </form>
 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php endforeach; ?>
                 </table>
+
                 <div class="modal fade" id="tambahCustomer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -96,44 +134,7 @@
                     </div>
                 </div>
 
-                <div class="modal fade" id="editCustomer-<?php echo $cs['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="editCustomer" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="editCustomer">Edit Data Customer</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="<?php echo base_url('customer/edit/' . $cs['id']) ?>" method="post">
-                                    <div class="form-group">
-                                        <label for="full_name" class="col-form-label">Nama</label>
-                                        <input type="text" class="form-control" id="full_name" name="full_name" value="<?= $cs['full_name'] ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="alamat" class="col-form-label">Alamat</label>
-                                        <textarea class="form-control" id="alamat" name="alamat" value="<?= $cs['alamat'] ?>"></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="email" class="col-form-label">Email</label>
-                                        <input type="text" class="form-control" id="email" name="email" value="<?= $cs['email'] ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="no_hp" class="col-form-label">No Hp</label>
-                                        <input type="tel" class="form-control" id="no_hp" name="no_hp" value="<?= $cs['no_hp'] ?>">
-                                    </div>
-                                    <!-- Tombol "Tambah" seharusnya berada di dalam form -->
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Save</button>
-                                    </div>
-                                </form>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </div>
 

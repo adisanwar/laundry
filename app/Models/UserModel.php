@@ -16,6 +16,12 @@ class UserModel extends Model
         'customers' => 'App\Models\CustomerModel',
     ];
 
+    // Metode untuk mengambil ID user berdasarkan username
+    public function getUserIdByUsername($username)
+    {
+        return $this->select('id')->where('username', $username)->get()->getRow('id');
+    }
+
     // Dates
     // protected $useTimestamps = false;
     // protected $dateFormat    = 'datetime';

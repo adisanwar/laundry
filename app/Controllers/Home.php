@@ -11,9 +11,16 @@ class Home extends BaseController
 
     public function dashboard()
     {
-        $data['username'] = session()->get('username');
-        $data['id'] = session()->get('id');
-        echo view('dashboard', $data);
+        $username['username'] = session()->get();
+        $id['user'] = session()->get();
+        
+        // Now you can use the $user_id as needed
+        // if ($user_id !== null) {
+        //     echo "User ID: "$user_id;
+        // } else {
+        //     echo "User ID not found in the session.";
+        // }
+        echo view('dashboard', $username, $id);
     }
 
     public function pesanan()

@@ -9,22 +9,30 @@ use Dompdf\Dompdf;
 
 class Reporttransaksi extends BaseController
 {
+    protected $order;
+    protected $customer;
+    protected $user;
+    
+    public function __construct()
+    {
+        // Load the LaundryOrderModel
+        $this->order = new LaundryOrderModel();
+        $this->customer = new CustomerModel();
+        $this->user = new UserModel();
+    }
     public function index()
     {
-        // Load the models
-        $customerModel = new CustomerModel();
-        $userModel = new UserModel();
-        $orderModel = new LaundryOrderModel();
-
         // Fetch the data using a join query
-        $data['customers'] = $customerModel
-            ->select('customers.*, users.username, orders.order_date')
-            ->join('users', 'users.id = customers.user_id')
-            ->join('orders', 'orders.customer_id = customers.id')
+        // $data['customers'] = $this->customer
+        //     ->select('customers.*, users.username')
+        //     ->join('users', 'users.id = customers.id')
+        //     ->join('orders', 'orders.customer_id = customers.id')
+        //     ->findAll();
+        $data['customers'] = $this->order->select('customers.id, customers.full_name, customers.alamat, customers.no_hp, orders.paket_laundry, orders.jenis, orders.berat, orders.harga, orders.pembayaran, orders.total, orders.status')
+            ->join('customers', 'customers.id = orders.customer_id')
             ->findAll();
-
         // Load the view
-        return view('customer', $data);
+        return view('laporan', $data);
     }
     public function generate()
     {
@@ -36,7 +44,7 @@ class Reporttransaksi extends BaseController
         $dompdf = new Dompdf();
 
         // load HTML content
-        // $dompdf->loadHtml(view('pdf_view'));
+        $dompdf->loadHtml(view('pdf_view'));
 
         // (optional) setup the paper size and orientation
         $dompdf->setPaper('A4', 'landscape');

@@ -30,7 +30,7 @@ class RegisterController extends Controller
             $user = [
                 'username' => $this->request->getPost('username'),
                 // 'email' => $this->request->getPost('email'),
-                'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
+                'password' => $this->request->getPost('password'), PASSWORD_DEFAULT,
             ];
             $userId = $userModel->insert($user);
 

@@ -30,11 +30,6 @@ class Order extends Migration
                 'constraint' => 100,
                 'null'       => false,
             ],
-            'qty'  => [
-                'type'       => 'VARCHAR',
-                'constraint' => 100,
-                'null'       => false,
-            ],
             'berat'  => [
                 'type'       => 'INT',
                 'constraint' => 100,
