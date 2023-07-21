@@ -43,8 +43,8 @@ $routes->get('/customer/delete/(:segment)', 'Customer::delete/$1');
 
 $routes->get('pesanan', 'Pesanan::index');
 $routes->post('pesanan/store', 'Pesanan::store');
-$routes->add('pesanan/edit/(:segment)', 'Pesanan::edit/$1');
-$routes->get('pesanan/delete/(:segment)', 'Pesanan::delete/$1');
+$routes->post('pesanan/edit/(:segment)', 'Pesanan::edit/$1');
+$routes->post('pesanan/delete/(:segment)', 'Pesanan::delete/$1');
 
 $routes->get('/lacak', 'Pesanan::lacak');
 

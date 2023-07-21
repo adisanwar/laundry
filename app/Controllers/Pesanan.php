@@ -19,6 +19,7 @@ class Pesanan extends BaseController
 
     public function index()
     {
+        
         $data['customers'] = $this->customer->findAll();
         // Melakukan operasi JOIN antara tabel "laundry_orders" dan "customers" dengan alias yang berbeda
         $data['orders'] = $this->order->select('customers.id, customers.full_name, customers.alamat, customers.no_hp, orders.paket_laundry, orders.jenis, orders.berat, orders.harga, orders.pembayaran, orders.total, orders.status')
@@ -73,7 +74,8 @@ class Pesanan extends BaseController
 
     public function delete($id)
     {
-        $this->order->delete($id);
+        $result['result'] = $this->order->delete($id);
+        var_dump($result);
         return redirect('pesanan')->with('success', 'Data Deleted Successfully');
     }
 
