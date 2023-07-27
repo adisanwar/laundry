@@ -9,7 +9,7 @@ class Order extends Migration
     public function up()
     {
         $this->forge->addField([
-            'id'         => [
+            '_order_id'         => [
                 'type'           => 'INT',
                 'constraint'     => 11,
                 'unsigned'       => true,

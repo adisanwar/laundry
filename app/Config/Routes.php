@@ -29,10 +29,15 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::dashboard');
+// $routes->get('/', 'Auth::index');
+
+    // Routes that require authentication (logged-in user) will be defined here
+$routes->get('/', 'Auth::index');
 $routes->get('/dashboard', 'Home::dashboard');
 $routes->get('register', 'RegisterController::index');
 $routes->get('login', 'Auth::index');
+$routes->get('logout', 'Auth::logout');
+$routes->post('login/auth', 'Auth::login');
 $routes->post('register', 'RegisterController::processRegistration');
 
 $routes->get('/customer', 'Customer::index');
@@ -40,16 +45,16 @@ $routes->add('/customer/create', 'Customer::store');
 $routes->add('/customer/edit/(:segment)', 'Customer::edit/$1');
 $routes->get('/customer/delete/(:segment)', 'Customer::delete/$1');
 
-
 $routes->get('pesanan', 'Pesanan::index');
 $routes->post('pesanan/store', 'Pesanan::store');
 $routes->post('pesanan/edit/(:segment)', 'Pesanan::edit/$1');
-$routes->post('pesanan/delete/(:segment)', 'Pesanan::delete/$1');
+$routes->get('pesanan/delete/(:segment)', 'Pesanan::delete/$1');
 
-$routes->get('/lacak', 'Pesanan::lacak');
-
-$routes->get('laporan', 'Reporttransaksi::index');
+$routes->get('/laporan', 'Reporttransaksi::index');
+$routes->get('/pdf_view', 'Reporttransaksi::view');
 $routes->get('/generate', 'Reporttransaksi::generate');
+
+
 
 /*
  * --------------------------------------------------------------------

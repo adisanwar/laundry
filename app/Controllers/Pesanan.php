@@ -22,7 +22,7 @@ class Pesanan extends BaseController
         
         $data['customers'] = $this->customer->findAll();
         // Melakukan operasi JOIN antara tabel "laundry_orders" dan "customers" dengan alias yang berbeda
-        $data['orders'] = $this->order->select('customers.id, customers.full_name, customers.alamat, customers.no_hp, orders.paket_laundry, orders.jenis, orders.berat, orders.harga, orders.pembayaran, orders.total, orders.status')
+        $data['orders'] = $this->order->select('orders.order_id, customers.id, customers.full_name, customers.alamat, customers.no_hp, orders.paket_laundry, orders.jenis, orders.berat, orders.harga, orders.pembayaran, orders.total, orders.status, orders.created_at, orders.updated_at')
             ->join('customers', 'customers.id = orders.customer_id')
             ->findAll();
 
@@ -34,6 +34,7 @@ class Pesanan extends BaseController
     {
 
         $data = [
+            
             'customer_id' => $this->request->getPost('customer_id'),
             'paket_laundry' => $this->request->getPost('paket_laundry'),
             'jenis' => $this->request->getPost('jenis'),
@@ -43,7 +44,6 @@ class Pesanan extends BaseController
             'total' => $this->request->getPost('total'),
             'status' => $this->request->getPost('status'),
             'created_at' => $this->request->getPost('created_at'),
-            'updated_at' => $this->request->getPost('updated_at'),
         ];
 
         // Simpan data order ke dalam tabel "orders"
@@ -62,21 +62,20 @@ class Pesanan extends BaseController
             'pembayaran' => $this->request->getPost('pembayaran'),
             'total' => $this->request->getPost('total'),
             'status' => $this->request->getPost('status'),
-            'created_at' => $this->request->getPost('created_at'),
             'updated_at' => $this->request->getPost('updated_at'),
         ];
-
+        var_dump($data);
         // Simpan data order ke dalam tabel "orders"
         $this->order->update($id, $data);
-        return redirect('pesanan')->with('success', 'Order Changed Successfully');
+        return redirect('pesanan')->with('success', 'Order Changed Successfully $data');
 
     }
 
     public function delete($id)
     {
-        $result['result'] = $this->order->delete($id);
-        var_dump($result);
-        return redirect('pesanan')->with('success', 'Data Deleted Successfully');
+        $result = $this->order->delete($id);
+        // var_dump($result);
+        return redirect('pesanan')->with('success', 'Data Deleted Successfully $result');
     }
 
 }

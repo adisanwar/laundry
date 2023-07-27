@@ -20,7 +20,7 @@ class Home extends BaseController
         // } else {
         //     echo "User ID not found in the session.";
         // }
-        echo view('dashboard', $username, $id);
+        echo view('dashboard', ['username' => $username]);
     }
 
     public function pesanan()

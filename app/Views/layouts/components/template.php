@@ -50,7 +50,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Codelapan <?= Date('Y') ?> </span>
+                        <span>Copyright &copy; kelompok 1 <?= Date('Y') ?> </span>
                     </div>
                 </div>
             </footer>
@@ -76,7 +76,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="logout">Logout</a>
+                    <a class="btn btn-primary" href="<?php echo base_url('logout')?>">Logout</a>
                 </div>
             </div>
         </div>
@@ -100,6 +100,12 @@
 
     <!-- Page level custom scripts -->
     <script src="<?= base_url('assets/js/demo/datatables-demo.js');?>"></script>
+
+    <script src="<?= base_url('assets/js/demo/chart-area-demo.js');?>"></script>
+
+    <script src="<?= base_url('assets/js/demo/chart-bar-demo.js');?>"></script>
+
+    <script src="<?= base_url('assets/js/demo/chart-pie-demo.js');?>"></script>
 
     <?= $this->renderSection('scripts') ?>
 </body>

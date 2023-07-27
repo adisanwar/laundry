@@ -18,17 +18,24 @@
                 <img src="<?php echo base_url('assets\img\unlock.svg')?>" class="img-fluid" alt="Phone image">
             </div>
             <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-                <form action="<?= base_url('login');?>" method="post">
+            <?php
+                if (session()->getFlashdata('message')) {
+                ?>
+                    <div class="alert alert-info">
+                        <?= session()->getFlashdata('message') ?>
+                    </div>
+                <?php } ?>
+                <form method="post" action="<?= base_url('login/auth');?>" >
                     <!-- Email input -->
                     <div class="form-outline mb-4">
-                        <input type="email" id="form1Example13" class="form-control form-control-lg" />
-                        <label class="form-label" for="form1Example13">Email address</label>
+                        <input type="text"  class="form-control form-control-lg" name="username" />
+                        <label class="form-label" >Username</label>
                     </div>
 
                     <!-- Password input -->
                     <div class="form-outline mb-4">
-                        <input type="password" id="form1Example23" class="form-control form-control-lg" />
-                        <label class="form-label" for="form1Example23">Password</label>
+                        <input type="password"  class="form-control form-control-lg" name="password" required=""/>
+                        <label class="form-label" >Password</label>
                     </div>
 
                     <div class="d-flex justify-content-around align-items-center mb-4">
@@ -41,18 +48,8 @@
                     </div>
 
                     <!-- Submit button -->
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
-
-                    <div class="divider d-flex align-items-center my-4">
-                        <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
-                    </div>
-
-                    <a class="btn btn-primary btn-lg btn-block" style="background-color: #3b5998" href="#!" role="button">
-                        <i class="fab fa-facebook-f me-2"></i>Continue with Facebook
-                    </a>
-                    <a class="btn btn-primary btn-lg btn-block" style="background-color: #55acee" href="#!" role="button">
-                        <i class="fab fa-twitter me-2"></i>Continue with Twitter</a>
-
+                    
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
                 </form>
             </div>
         </div>

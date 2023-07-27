@@ -11,16 +11,7 @@ class UserModel extends Model
     protected $useAutoIncrement = true;
     protected $allowedFields = ['username', 'password'];
 
-    // Define relationships
-    protected $hasMany = [
-        'customers' => 'App\Models\CustomerModel',
-    ];
-
-    // Metode untuk mengambil ID user berdasarkan username
-    public function getUserIdByUsername($username)
-    {
-        return $this->select('id')->where('username', $username)->get()->getRow('id');
-    }
+  
 
     // Dates
     // protected $useTimestamps = false;
